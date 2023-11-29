@@ -1,0 +1,36 @@
+body {
+    background-color: #fbfbfb;
+  }
+  .sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    padding: 58px 0 0; 
+    width: 240px;
+  }
+  .sidebar .active {
+    border-radius: 5px;
+  }
+  
+  .sidebar-sticky {
+    position: relative;
+    top: 0;
+    padding-top: 0.5rem;
+  }
+  .custom-table {
+    width: 50%; 
+    margin: auto; 
+}
+.headd{
+        background: linear-gradient(to right, #87CEEB, #C9A0DC);
+        padding: 10px;
+        text-align: center;
+        color: white;
+        font-size: 24px;
+        font-weight: bold;
+        height: 100px;
+}
+nav{
+    margin-top: 100px;
+}

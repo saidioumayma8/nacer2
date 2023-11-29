@@ -3,10 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up and Sign In</title>
-    <!-- Bootstrap CSS -->
+    <title>Sign In</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <!-- Custom styles -->
     <style>
         body {
             background: linear-gradient(to right, #87CEEB, #C9A0DC);
@@ -20,45 +18,55 @@
 
 <div class="container">
     <div class="row">
-        <!-- Sign Up Form -->
-        <div class="col-md-6">
-            <h2>Sign Up</h2>
-            <form>
-                <div class="form-group">
-                    <label for="signupUsername">Username</label>
-                    <input type="text" class="form-control" id="signupUsername" placeholder="Enter your username" required>
-                </div>
-                <div class="form-group">
-                    <label for="signupUsername">Email</label>
-                    <input type="text" class="form-control" id="signupEmail" placeholder="Enter your email" required>
-                </div>
-                <div class="form-group">
-                    <label for="signupPassword">Password</label>
-                    <input type="password" class="form-control" id="signupPassword" placeholder="Enter your password" required>
-                </div>
-                <button type="submit" class="btn btn-primary">Sign Up</button>
-            </form>
-        </div>
-
-        <!-- Sign In Form -->
         <div class="col-md-6">
             <h2>Sign In</h2>
-            <form>
+            <form method="post">
                 <div class="form-group">
                     <label for="signinUsername">Username</label>
-                    <input type="text" class="form-control" id="signinUsername" placeholder="Enter your username" required>
+                    <input type="text" class="form-control" id="signinUsername" placeholder="Enter your username" name="username" required>
                 </div>
                 <div class="form-group">
                     <label for="signinPassword">Password</label>
-                    <input type="password" class="form-control" id="signinPassword" placeholder="Enter your password" required>
+                    <input type="password" class="form-control" id="signinPassword" placeholder="Enter your password" name="password" required>
                 </div>
                 <button type="submit" class="btn btn-primary">Sign In</button>
+                <p>Don't have an account? <a href="signup.php">Sign Up</a></p>
             </form>
         </div>
     </div>
 </div>
+<?php
+session_start();
+include 'connection.php';
 
-<!-- Bootstrap JS and dependencies -->
+// Check if the form is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = $_POST["username"];
+    $password = $_POST["password"];
+
+    try {
+        // Use the $pdo connection instead of $conn
+        $query = "SELECT * FROM usertable WHERE login = :admin AND pass = :pass";
+        $stmt = $pdo->prepare($query);
+        $stmt->bindParam(':admin', $username);
+        $stmt->bindParam(':pass', $password);
+        $stmt->execute();
+
+        if ($stmt->rowCount() == 1) {
+            $_SESSION['loggedin'] = true;
+            $_SESSION['username'] = $username;
+
+            header("Location: home.php");
+            exit();
+        } else {
+            echo "Invalid username or password.";
+        }
+    } catch (PDOException $e) {
+        echo "Error: " . $e->getMessage();
+    }
+}
+?>
+
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
