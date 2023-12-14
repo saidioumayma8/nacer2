@@ -39,13 +39,12 @@
 session_start();
 include 'connection.php';
 
-// Check if the form is submitted
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST["username"];
     $password = $_POST["password"];
 
     try {
-        // Use the $pdo connection instead of $conn
         $query = "SELECT * FROM usertable WHERE login = :admin AND pass = :pass";
         $stmt = $pdo->prepare($query);
         $stmt->bindParam(':admin', $username);

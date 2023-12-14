@@ -34,3 +34,7 @@ body {
 nav{
     margin-top: 100px;
 }
+.button{
+  position: absolute;
+  left: 725px;
+}
