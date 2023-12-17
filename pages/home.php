@@ -4,13 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <title> ElectroNacer</title>
 </head>
 <body>
-<header class="headd">
-    Electro Nacer
-</header>
+
 <header>
     <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
         <div class="position-sticky">
@@ -31,17 +29,33 @@
         </div>
     </nav>
 </header>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container">
+      <a class="h2 text-center mt-5 mb-4 mr-3" href="#">ElectroNaser</a>
+   
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Log out</a>
+          </li>
+        </ul>
+      </div>
+  </div>
+</nav>
+ 
 
 <?php
-require_once 'connection.php'; 
+require_once '../config/connection.php'; 
 
 $stmt = $pdo->prepare("SELECT * FROM product");
 $stmt->execute();
 
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// Pagination
-$recordsPerPage = 3; // Number of records to show per page
+$recordsPerPage = 3;
 $totalRecords = count($products);
 $totalPages = ceil($totalRecords / $recordsPerPage);
 
@@ -54,16 +68,9 @@ if (!isset($_GET['page']) || !is_numeric($_GET['page']) || $_GET['page'] < 1 || 
 $offset = ($currentPage - 1) * $recordsPerPage;
 $paginationProducts = array_slice($products, $offset, $recordsPerPage);
 
-// $categoryFilter = isset($_GET['category']) ? $_GET['category'] : '1'; // Default to a specific category (e.g., 1)
-
-// // SQL query with category filter
-// $stmt = $pdo->prepare("SELECT * FROM product WHERE fk_idcat = :category");
-// $stmt->bindParam(':category', $categoryFilter);
-// $stmt->execute();
-// $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
-
 <div class="container-fluid mt-5">
+<h2 class="list">List de produit</h2>
     <table class="table table-bordered custom-table">
         <thead>
             <tr>
@@ -93,8 +100,8 @@ $paginationProducts = array_slice($products, $offset, $recordsPerPage);
                     <td><?php echo $product['reduc']; ?></td>
                     <td><?php echo $product['description']; ?></td>
                     <td>
-                       <a href="edit_product.php?reference=<?php echo $product['reference']; ?>" class="btn btn-sm btn-primary">Edit</a>
-                       <a href="delete_product.php?reference=<?php echo $product['reference']; ?>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this product?')">Delete</a>
+                       <a href="../includes/edit_product.php?reference=<?php echo $product['reference']; ?>" class="btn btn-sm btn-primary">Edit</a>
+                       <a href="../includes/delete_product.php?reference=<?php echo $product['reference']; ?>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this product?')">Delete</a>
                     </td>
                 </tr>
             <?php endforeach; ?>
@@ -112,10 +119,11 @@ $paginationProducts = array_slice($products, $offset, $recordsPerPage);
     </div>
 </div>
 <a href="add_product.php" class="btn btn-primary button">Add Product</a>
+
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<!-- <script>
+ <script>
 document.addEventListener('DOMContentLoaded', function() {
     // Get all category links
     var categoryLinks = document.querySelectorAll('#sidebarMenu a');
@@ -141,6 +149,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
-</script> -->
+</script> 
 </body>
 </html>

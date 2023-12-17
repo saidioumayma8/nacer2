@@ -1,6 +1,6 @@
 <!-- delete_product.php -->
 <?php
-require_once 'connection.php';
+require_once '../config/connection.php';
 
 if (isset($_GET['reference'])) {
     $reference = $_GET['reference'];
@@ -11,11 +11,11 @@ if (isset($_GET['reference'])) {
     $stmt->execute();
 
     // Redirect back to the main page after deletion
-    header("Location: main_page.php");
+    header("Location: home.php");
     exit();
 } else {
     // Redirect to the main page if reference is not provided
-    header("Location: main_page.php");
+    header("Location: home.php");
     exit();
 }
 ?>

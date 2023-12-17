@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'connection.php';
+include '../config/connection.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST["login"];
@@ -35,9 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <!-- Custom styles -->
     <style>
         body {
             background: linear-gradient(to right, #87CEEB, #C9A0DC);
@@ -56,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <h2>Login</h2>
             <form method="post">
                 <div class="form-group">
-                    <label for="loginUsername">Username</label>
+                    <label for="loginUsername">email</label>
                     <input type="text" class="form-control" id="loginUsername" placeholder="Enter your username" name="login" required>
                 </div>
                 <div class="form-group">
@@ -70,7 +68,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 </div>
 
-<!-- Bootstrap JS and dependencies -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>

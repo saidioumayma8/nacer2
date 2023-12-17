@@ -1,5 +1,5 @@
 <?php
-$dbname = "nacerdb";
+$dbname = "electronacer";
 $dbuser = "root";
 $dbpass = "";
 $dbhost = "localhost";

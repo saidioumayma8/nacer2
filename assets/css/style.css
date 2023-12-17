@@ -23,7 +23,6 @@ body {
     margin: auto; 
 }
 .headd{
-        background: linear-gradient(to right, #87CEEB, #C9A0DC);
         padding: 10px;
         text-align: center;
         color: white;
@@ -37,4 +36,8 @@ nav{
 .button{
   position: absolute;
   left: 725px;
+}
+.list{
+  display: flex;
+  justify-content: center;
 }
