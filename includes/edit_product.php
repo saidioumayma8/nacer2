@@ -1,9 +1,7 @@
-<!-- edit_product.php -->
 <?php
-require_once 'connection.php';
+require_once '../config/connection.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Collect form data
     $reference = $_POST['reference'];
     $name_prod = $_POST['name_prod'];
     $photoTmp = $_FILES['img_prod']['tmp_name'];
@@ -16,7 +14,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $reduc = $_POST['reduc'];
     $description = $_POST['description'];
 
-    // Update the product in the database
     $stmt = $pdo->prepare("UPDATE product SET 
         name_prod = :name_prod,  
         image_prod = :img_prod,
@@ -45,15 +42,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 if (isset($_GET['reference'])) {
     $reference = $_GET['reference'];
-
-    // Fetch product details
     $stmt = $pdo->prepare("SELECT * FROM product WHERE reference = :reference");
     $stmt->bindParam(':reference', $reference);
     $stmt->execute();
     $product = $stmt->fetch(PDO::FETCH_ASSOC);
-    header("Location: home.php");
+    header("Location: ../pages/home.php");
 } else {
-    // Redirect to the main page if reference is not provided
     
     exit();
 }

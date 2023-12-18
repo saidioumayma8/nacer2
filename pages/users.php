@@ -63,14 +63,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container">
       <a class="h2 text-center mt-5 mb-4 mr-3" href="#">ElectroNaser</a>
-   
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
       <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" href="#">Home</a>
+            <a class="nav-link" href="home.php">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Log out</a>
+            <a class="nav-link" href="index.php">Log out</a>
           </li>
         </ul>
       </div>
@@ -110,7 +112,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         <?php endif; ?>
 
                                         <?php if (!$user['is_admin']) : ?>
-                                            <button type="submit" class="btn btn-info" name="promote">Promote to Admin</button>
+                                            <button type="submit" class="btn btn-secondary" name="promote">Promote to Admin</button>
                                         <?php endif; ?>
                                     </form>
                                 </td>

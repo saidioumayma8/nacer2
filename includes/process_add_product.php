@@ -2,7 +2,6 @@
 require_once 'connection.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Retrieve form data
     $reference = $_POST['reference'];
     $name = $_POST['name'];
     $image = $_FILES['image']['tmp_name'];
@@ -13,14 +12,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $quantite_stock = $_POST['quantite_stock'];
     $reduc = $_POST['reduc'];
     $description = $_POST['description'];
-    $category = $_POST['category']; // Retrieve selected category
+    $category = $_POST['category']; 
 
-    // Insert into database
     $stmt = $pdo->prepare("INSERT INTO product (reference, name_prod, image_prod, codebar, price_init, price_fin, quantite_min, quantite_stock, reduc, description, fk_idcat) 
                            VALUES (?, ?, LOAD_FILE(?), ?, ?, ?, ?, ?, ?, ?, ?)");
     $stmt->execute([$reference, $name, $image, $codebar, $price_init, $price_fin, $quantite_min, $quantite_stock, $reduc, $description, $category]);
 
-    // Redirect or display success message
+
     header('Location: home.php');
     exit();
 }

@@ -118,7 +118,7 @@ $paginationProducts = array_slice($products, $offset, $recordsPerPage);
         </ul>
     </div>
 </div>
-<a href="add_product.php" class="btn btn-primary button">Add Product</a>
+<a href="../includes/add_product.php" class="btn btn-primary button">Add Product</a>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>

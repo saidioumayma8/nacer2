@@ -1,18 +1,14 @@
 <?php
-// Include your database connection file (connection.php)
 require_once 'connection.php';
 
-// Check if the 'category' parameter is set in the GET request
 if (isset($_GET['category'])) {
     $categoryFilter = $_GET['category'];
 
-    // Prepare and execute a SQL query to fetch products based on the selected category
     $stmt = $pdo->prepare("SELECT * FROM product WHERE fk_idcat = :category");
     $stmt->bindParam(':category', $categoryFilter);
     $stmt->execute();
     $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    // Output the HTML for the product rows
     foreach ($products as $product) {
         echo '<tr>';
         echo '<td>' . $product['reference'] . '</td>';
@@ -32,7 +28,6 @@ if (isset($_GET['category'])) {
         echo '</tr>';
     }
 } else {
-    // Handle the case when no category is specified (optional)
     echo 'Invalid category';
 }
 ?>
